@@ -24,7 +24,7 @@ namespace my_slam {
 
         std::vector<cv::Mat> images;
 
-        bool operator<(const ImuData &other) { return timestamp < other.timestamp; }
+        bool operator<(const CameraData &other) { return timestamp < other.timestamp; }
     };
         
 } // namespace ov_core
