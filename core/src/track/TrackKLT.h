@@ -1,7 +1,7 @@
 #ifndef TRACK_KLT_H
 #define TRACK_KLT_H
 
-namespace my_slam {
+namespace simple_slam {
 class TrackKLT
 {     
 public:

@@ -1,14 +1,14 @@
 #ifndef TRACK_BASE_H
 #define TRACK_BASE_H
 
-namespace my_slam {
+namespace simple_slam {
 class TrackBase
 {
 public:
   TrackBase() {};
   virtual ~TrackBase(){}
   
-  virtual void feed_new_caera() = 0;
+  virtual void feed_new_camera() = 0;
 
 protected:
 };
