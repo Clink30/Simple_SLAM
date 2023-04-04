@@ -12,7 +12,7 @@ struct Feature;
 struct Frame
 {
     public:
-     Frame(){};
+     Frame(){}
      Frame(long id, double time_stamp, const SE3 &pose, const Mat &img);
 
      SE3 Pose() {
