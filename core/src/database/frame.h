@@ -13,7 +13,8 @@ struct Frame
 {
     public:
      Frame(){}
-     Frame(long id, double time_stamp, const SE3 &pose, const Mat &img);
+     Frame(long id, double time_stamp, const SE3 &pose, const Mat &img) : 
+        _id(id), _time_stamp(time_stamp), _pose(pose), _img(img) {}
 
      SE3 Pose() {
         std::unique_lock<std::mutex> lck(_pose_mutex);
@@ -27,10 +28,12 @@ struct Frame
 
      void SetKeyFrame();
     
+     static std::shared_ptr<Frame> CreateFrame();
+     
     public:
      EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
      typedef std::shared_ptr<Frame> Ptr;
-     static std::shared_ptr<Frame> CreateFrame();
+     
 
     private:
 

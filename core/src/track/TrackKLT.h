@@ -1,12 +1,15 @@
 #ifndef TRACK_KLT_H
 #define TRACK_KLT_H
 
+#include "TrackBase.h"
 #include "database/sensor_data.h"
 
 namespace simple_slam {
-class TrackKLT
+
+class TrackKLT : public TrackBase
 {     
 public:
+  
   TrackKLT(){}  
 
   void feed_new_camera(const CameraData &message);
@@ -16,7 +19,10 @@ public:
   void perform_detection_monocular();      
 
   void perform_matching(); 
-protected:       
+
+private:       
+  
+
 };
 }
 

@@ -26,7 +26,7 @@ struct CameraData
 {
     double timestamp;
 
-    std::vector<cv::Mat> images;
+    cv::Mat image;
 
     bool operator<(const CameraData &other) { return timestamp < other.timestamp; }
 
