@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
-project(simple_slam)
+project(simple_slam_lib)
 
 find_package(Eigen3 REQUIRED)
 find_package(OpenCV 3 QUIET)

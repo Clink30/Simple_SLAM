@@ -6,15 +6,17 @@
 #include "cam/CamBase.h"
 #include "utils/common_include.h"
 
+#include "feature.h"
+
 namespace simple_slam{
 struct Feature;
 
 struct Frame
 {
     public:
-     Frame(){}
+     Frame(){};
      Frame(long id, double time_stamp, const SE3 &pose, const Mat &img) : 
-        _id(id), _time_stamp(time_stamp), _pose(pose), _img(img) {}
+        _id(id), _time_stamp(time_stamp), _pose(pose), _img(img) {};
 
      SE3 Pose() {
         std::unique_lock<std::mutex> lck(_pose_mutex);
@@ -31,6 +33,7 @@ struct Frame
      static std::shared_ptr<Frame> CreateFrame();
      
     public:
+
      EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
      typedef std::shared_ptr<Frame> Ptr;
      
@@ -51,6 +54,6 @@ struct Frame
      std::vector<std::shared_ptr<Feature>> features;
 };
 
-
-
 }
+
+#endif

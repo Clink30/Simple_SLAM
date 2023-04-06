@@ -4,18 +4,26 @@
 #define MAPPOINT_H
 
 #include "utils/common_include.h"
+#include "feature.h"
 
 namespace simple_slam {
+
 struct Frame;
 struct Feature;
     
     
 struct MapPoint 
 {
-    public:
-     MapPoint() {}
+public:
 
-     MapPoint(long id, const Vec3 &position) : _id(id), _pos(position){}
+     EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+
+     typedef std::shared_ptr<MapPoint> Ptr;
+
+public:
+     MapPoint(){};
+
+     MapPoint(long id, const Vec3 &position) : _id(id), _pos(position){};
 
      Vec3 Pos() {
         std::unique_lock<std::mutex> lck(_data_mutex);
@@ -28,29 +36,18 @@ struct MapPoint
      }
 
      
-     void AddObservation() {
+     void AddObservation(std::shared_ptr<Feature> feature) {
         std::unique_lock<std::mutex> lck(_data_mutex);
-        _observation.push_back(feature);
+        _observations.push_back(feature);
         _observed_times ++;
      }
 
-     void GetObservated() {
-        std::unique_lock<std::mutex> lck(_data_mutex);
-        return _observations;
-     }
 
      static MapPoint::Ptr CreateNewMappoint();
 
      void RemoveObservation(std::shared_ptr<Feature> feature);
 
-    public:
-
-     EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
-     typedef std::shared_ptr<MapPoint> Ptr;
-     
-
-
-    private:
+private:
 
 
      unsigned long _id = 0;
@@ -65,8 +62,9 @@ struct MapPoint
 
      std::list<std::weak_ptr<Feature>> _observations;
 
-}
-}
+};
+
+} //namespace mappoint
 
 
 #endif 

@@ -13,7 +13,7 @@ Vec3 CamBase::camera2world(const Vec3 &p_c, const SE3 &T_c_w) {
 Vec2 CamBase::camera2pixel(const Vec3 &p_c) {
     return Vec2(
             _fx * p_c(0, 0) / p_c(2, 0) + _cx,
-            _fy * p_c(1, 0) / p_c(2, 0) + _cy,
+            _fy * p_c(1, 0) / p_c(2, 0) + _cy
     );
 }
 
@@ -29,7 +29,7 @@ Vec2 CamBase::world2pixel(const Vec3 &p_w, const SE3 &T_c_w) {
     return camera2pixel(world2camera(p_w, T_c_w));
 }
 
-Vec3 CamBase::pixel2world(const Vec3 &p_p, const SE3 &T_c_w, double depth) {
+Vec3 CamBase::pixel2world(const Vec2 &p_p, const SE3 &T_c_w, double depth) {
     return camera2world(pixel2camera(p_p, depth), T_c_w);
 }
 

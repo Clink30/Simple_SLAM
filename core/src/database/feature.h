@@ -15,17 +15,17 @@ struct MapPoint;
 struct Feature
 {
     public:
-     Feature() {}
+     Feature(){};
      Feature(std::shared_ptr<Frame> frame, const cv::KeyPoint &kp) 
-       : _frame(frame), _position(kp){} 
+       : _frame(frame), _position(kp){}; 
 
     public:
      typedef std::shared_ptr<Feature> Ptr; 
      EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
 
+     std::weak_ptr<MapPoint> _map_point;
     private:
       std::weak_ptr<Frame> _frame;
-      std::waek_ptr<MapPoint> _map_point;
 
       cv::KeyPoint _position;
 
